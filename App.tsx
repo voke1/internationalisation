@@ -20,6 +20,18 @@ const options = [
 const App = () => {
   const {t, i18n} = useTranslation();
 
+  const selectLng = () => {
+    if (i18n.language === 'en') {
+      return 0;
+    } else if (i18n.language === 'fr') {
+      return 1;
+    } else if (i18n.language === 'it') {
+      return 2;
+    } else {
+      return 0;
+    }
+  };
+
   return (
     <Container>
       <Header>
@@ -27,7 +39,7 @@ const App = () => {
           <SwitchSelector
             options={options}
             hasPadding
-            initial={0}
+            initial={selectLng()}
             onPress={(language: string) => i18n.changeLanguage(language)}
           />
         </Body>

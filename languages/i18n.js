@@ -3,17 +3,31 @@ import english from './english.json';
 import french from './french.json';
 import italian from './italian.json';
 import {initReactI18next} from 'react-i18next';
+import * as RNLocalize from 'react-native-localize';
 
-i18next.use(initReactI18next).init({
-  lng: 'en',
-  resources: {
-    en: english,
-    fr: french,
-    it: italian,
+const languageDetector = {
+  type: 'languageDetector',
+  async: true,
+  detect: callback => {
+    return callback(RNLocalize.getLocales()[0].languageCode);
   },
-  react: {
-    useSuspence: false,
-  },
-});
+  init: () => {},
+  cacheUserLanguage: () => {},
+};
+
+i18next
+  .use(languageDetector)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: 'en',
+    resources: {
+      en: english,
+      fr: french,
+      it: italian,
+    },
+    react: {
+      useSuspence: false,
+    },
+  });
 
 export default i18next;
