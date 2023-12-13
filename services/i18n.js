@@ -1,7 +1,7 @@
 import i18next from 'i18next';
-import english from './english.json';
-import french from './french.json';
-import italian from './italian.json';
+import english from '../locales/english.json';
+import french from '../locales/french.json';
+import italian from '../locales/italian.json';
 import {initReactI18next} from 'react-i18next';
 import * as RNLocalize from 'react-native-localize';
 
